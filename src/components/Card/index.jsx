@@ -4,11 +4,16 @@ import { ShoppingCartContext } from '../../Context'
 import { Add } from '../../assets/icons/Add'
 
 export function Card ({ product }) {
-  const { count, setCount, openProductDetail, setProductToShow } = useContext(ShoppingCartContext)
+  const { count, setCount, openProductDetail, setProductToShow, setCart } = useContext(ShoppingCartContext)
   const handleClick = () => {
     setProductToShow(product)
     openProductDetail()
   }
+
+  const addToCart = (productData) => {
+    setCart(cartState => [...cartState, productData])
+  }
+
   return (
     <div className='bg-white cursor-pointer w-56 h-60 rounded-lg' onClick={handleClick}>
       <figure className='relative mb-2 w-full h-4/5'>
@@ -19,6 +24,7 @@ export function Card ({ product }) {
           onClick={(e) => {
             e.stopPropagation()
             setCount(count + 1)
+            addToCart(product)
           }}
         >
           <Add />

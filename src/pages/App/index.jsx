@@ -1,5 +1,5 @@
 import { useRoutes, BrowserRouter } from 'react-router-dom'
-import { ShoppingCartProvider } from '../../Context'
+import { useContext } from 'react'
 import { Home } from '../Home'
 import { MyAccount } from '../MyAccount'
 import { MyOrder } from '../MyOrder'
@@ -7,6 +7,8 @@ import { MyOrders } from '../MyOrders'
 import { NotFound } from '../NotFound'
 import { SignIn } from '../SignIn'
 import { NavBar } from '../../components/Navbar'
+import { CheckoutSideMenu } from '../../components/CheckoutSideMenu'
+import { ShoppingCartContext } from '../../Context'
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -24,13 +26,16 @@ const AppRoutes = () => {
 }
 
 function App () {
+  const { isCheckoutSideMenuOpen } = useContext(ShoppingCartContext)
+
   return (
-    <ShoppingCartProvider>
+    <>
       <BrowserRouter>
+        {isCheckoutSideMenuOpen && <CheckoutSideMenu />}
         <NavBar />
         <AppRoutes />
       </BrowserRouter>
-    </ShoppingCartProvider>
+    </>
   )
 }
 

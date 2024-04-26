@@ -4,8 +4,11 @@ import { ShoppingCartContext } from '../../Context'
 import { Add } from '../../assets/icons/Add'
 
 export function Card ({ product }) {
-  const { count, setCount, openProductDetail } = useContext(ShoppingCartContext)
-  const handleClick = () => openProductDetail()
+  const { count, setCount, openProductDetail, setProductToShow } = useContext(ShoppingCartContext)
+  const handleClick = () => {
+    setProductToShow(product)
+    openProductDetail()
+  }
   return (
     <div className='bg-white cursor-pointer w-56 h-60 rounded-lg' onClick={handleClick}>
       <figure className='relative mb-2 w-full h-4/5'>

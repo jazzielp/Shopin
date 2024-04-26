@@ -4,15 +4,19 @@ import { ShoppingCartContext } from '../../Context'
 import { Add } from '../../assets/icons/Add'
 
 export function Card ({ product }) {
-  const context = useContext(ShoppingCartContext)
+  const { count, setCount, openProductDetail } = useContext(ShoppingCartContext)
+  const handleClick = () => openProductDetail()
   return (
-    <div className='bg-white cursor-pointer w-56 h-60 rounded-lg'>
+    <div className='bg-white cursor-pointer w-56 h-60 rounded-lg' onClick={handleClick}>
       <figure className='relative mb-2 w-full h-4/5'>
         <span className='absolute bottom-0 left-0 bg-pink-200 rounded-lg text-black text-xs m-2 px-3 py-0.5'>{product?.category}</span>
         <img className='w-full h-full object-cover rounded-lg' src={product.image} alt={product.title} />
         <div
           className='absolute top-0 right-0 flex justify-center items-center bg-blue-300 w-6 h-6 rounded-full m-2 p-1'
-          onClick={() => { context.setCount(context.count + 1) }}
+          onClick={(e) => {
+            e.stopPropagation()
+            setCount(count + 1)
+          }}
         >
           <Add />
         </div>

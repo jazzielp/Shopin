@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Card } from '../../components/Card'
 import { Layout } from '../../components/Layout'
+import { ProductDetail } from '../../components/ProductDetail'
 const URL = 'https://fakestoreapi.com/products'
 export function Home () {
   const [products, setProducts] = useState(null)
@@ -16,6 +17,7 @@ export function Home () {
           products && products.map((product) => <Card key={product.id} product={product} />)
         }
       </div>
+      <ProductDetail />
     </Layout>
   )
 }

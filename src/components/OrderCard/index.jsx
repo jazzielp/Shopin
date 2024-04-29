@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Delete } from '../../assets/icons/Delete'
 import { ShoppingCartContext } from '../../Context'
-export function OrderCard ({ product }) {
+export function OrderCard ({ product, isMyOrder = false }) {
   const { id, image, title, price } = product
   const { cart, setCart } = useContext(ShoppingCartContext)
   const handleClick = (id) => {
@@ -18,9 +18,11 @@ export function OrderCard ({ product }) {
       </div>
       <div className='flex items-center gap-2'>
         <p className='text-lg font-medium'>{price}</p>
-        <button onClick={() => handleClick(id)}>
-          <Delete />
-        </button>
+        {!isMyOrder &&
+          <button onClick={() => handleClick(id)}>
+            <Delete />
+          </button>}
+
       </div>
     </div>
   )

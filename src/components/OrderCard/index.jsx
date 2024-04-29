@@ -1,6 +1,13 @@
+import { useContext } from 'react'
 import { Delete } from '../../assets/icons/Delete'
+import { ShoppingCartContext } from '../../Context'
 export function OrderCard ({ product }) {
-  const { image, title, price } = product
+  const { id, image, title, price } = product
+  const { cart, setCart } = useContext(ShoppingCartContext)
+  const handleClick = (id) => {
+    const newArray = cart.filter(product => product.id !== id)
+    setCart(newArray)
+  }
   return (
     <div className='flex justify-between items-center'>
       <div className='flex items-center gap-2'>
@@ -11,7 +18,9 @@ export function OrderCard ({ product }) {
       </div>
       <div className='flex items-center gap-2'>
         <p className='text-lg font-medium'>{price}</p>
-        <Delete />
+        <button onClick={() => handleClick(id)}>
+          <Delete />
+        </button>
       </div>
     </div>
   )

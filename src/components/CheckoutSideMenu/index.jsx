@@ -14,7 +14,7 @@ export function CheckoutSideMenu () {
           <Close />
         </button>
       </div>
-      <div className='m-6 flex flex-col gap-5'>
+      <div className='m-6 flex flex-col gap-5 overflow-y-scroll'>
         {
           cart && cart.map(product => <OrderCard key={product.id} product={product} />)
         }

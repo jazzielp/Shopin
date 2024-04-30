@@ -9,7 +9,11 @@ export function MyOrders () {
   console.log(order)
   return (
     <Layout>
-      MyOrders
+      <div className=''>
+        <h1>
+          My orders
+        </h1>
+      </div>
       {order.map(item =>
         <Link key={item.id} to={`/my-orders/${order.id}`}>
           <OrdersCard totalProducts={item.totalProducts} totalPrice={item.totalPrice} />

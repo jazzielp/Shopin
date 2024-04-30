@@ -7,7 +7,6 @@ const URL = 'https://fakestoreapi.com/products'
 export function Home () {
   const [products, setProducts] = useState(null)
   const { isProductDetailOpen, order } = useContext(ShoppingCartContext)
-  console.log(order)
   useEffect(() => {
     fetch(URL)
       .then(response => response.json())
